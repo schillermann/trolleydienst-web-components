@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "../lit-core.min.js";
+import { LitElement, css, html } from "../../lit-core.min.js";
 
 export class ShiftButtonEditDay extends LitElement {
   static properties = {

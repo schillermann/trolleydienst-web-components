@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "../lit-core.min.js";
+import { LitElement, css, html } from "../../lit-core.min.js";
 import "./shift-button-apply-shift.js";
 import "./shift-button-edit-day.js";
 import "./shift-button-publisher-contact.js";
