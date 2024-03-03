@@ -1,8 +1,7 @@
 import { LitElement, css, html } from "../../lit-core.min.js";
-import "./shift-button-apply-shift.js";
-import "./shift-button-edit-day.js";
-import "./shift-button-publisher-contact.js";
-import "./shift-button-shift-action.js";
+import "./shift-button.js";
+import "./shift-button-publisher.js";
+import "./shift-button-publisher-primary.js";
 
 export class ShiftCalendarDay extends LitElement {
   static properties = {
@@ -22,6 +21,7 @@ export class ShiftCalendarDay extends LitElement {
 
   render() {
     return html`
+      <link rel="stylesheet" href="fontawesome/css/all.min.css" />
       <table>
         <thead>
           <tr>
@@ -34,12 +34,18 @@ export class ShiftCalendarDay extends LitElement {
           <tr>
             <td>09:00 - 11:00</td>
             <td>
-              <shift-button-shift-action
-                publisherName="Jane Doe"
-              ></shift-button-shift-action>
-              <shift-button-apply-shift></shift-button-apply-shift>
-              <shift-button-publisher-contact publisherName="John Doe">
-              </shift-button-publisher-contact>
+              <shift-button-publisher-primary>
+                <i class="fa-regular fa-user"></i>
+                Jane Doe
+              </shift-button-publisher-primary>
+              <shift-button-publisher>
+                <i class="fa-regular fa-pen-to-square"></i>
+                apply2
+              </shift-button-publisher>
+              <shift-button-publisher-primary>
+                <i class="fa fa-info-circle"></i>
+                John Doe
+              </shift-button-publisher-primary>
             </td>
           </tr>
         </tbody>
@@ -47,7 +53,10 @@ export class ShiftCalendarDay extends LitElement {
         <tfoot>
           <tr>
             <td colspan="2">
-              <shift-button-edit-day>Edit</shift-button-edit-day>
+              <shift-button>
+                <i class="fa-solid fa-pencil"></i>
+                Edit
+              </shift-button>
             </td>
           </tr>
         </tfoot>
