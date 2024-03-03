@@ -5,18 +5,18 @@ import "./shift-button-publisher-primary.js";
 
 export class ShiftCalendarDay extends LitElement {
   static properties = {
-    name: {},
+    currentPublisherId: { type: Number },
+    routeName: { type: String },
+    shiftStart: { type: String },
+    shifts: { type: Array },
   };
-
-  static styles = css`
-    :host {
-      background-color: blue;
-    }
-  `;
 
   constructor() {
     super();
-    this.name = "World";
+    this.currentPublisherId = 0;
+    this.routeName = "";
+    this.shiftStart = "";
+    this.shifts = [];
   }
 
   render() {
@@ -26,28 +26,40 @@ export class ShiftCalendarDay extends LitElement {
         <thead>
           <tr>
             <th colspan="2" style="background-color: #d5c8e4">
-              Sonntag, 03.03.2024 - Route 1
+              ${new Date(this.shiftStart).toDateString()} - ${this.routeName}
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>09:00 - 11:00</td>
-            <td>
-              <shift-button-publisher-primary>
-                <i class="fa-regular fa-user"></i>
-                Jane Doe
-              </shift-button-publisher-primary>
-              <shift-button-publisher>
-                <i class="fa-regular fa-pen-to-square"></i>
-                apply2
-              </shift-button-publisher>
-              <shift-button-publisher-primary>
-                <i class="fa fa-info-circle"></i>
-                John Doe
-              </shift-button-publisher-primary>
-            </td>
-          </tr>
+          ${this.shifts.map(
+            (shift) => html`
+              <tr>
+                <td>${shift.from} - ${shift.to}</td>
+                <td>
+                  ${shift.slots.map((slot) => {
+                    if (slot.publisherId === this.currentPublisherId) {
+                      return html`<shift-button-publisher-primary>
+                        <i class="fa-regular fa-user"></i>
+                        ${slot.publisherName}
+                      </shift-button-publisher-primary>`;
+                    }
+                    if (slot.publisherName) {
+                      return html`
+                        <shift-button-publisher-primary>
+                          <i class="fa fa-info-circle"></i>
+                          ${slot.publisherName}
+                        </shift-button-publisher-primary>
+                      `;
+                    }
+                    return html`<shift-button-publisher>
+                      <i class="fa-regular fa-pen-to-square"></i>
+                      apply
+                    </shift-button-publisher>`;
+                  })}
+                </td>
+              </tr>
+            `
+          )}
         </tbody>
 
         <tfoot>
