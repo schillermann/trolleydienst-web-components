@@ -21,7 +21,7 @@ export class ShiftCalendarDay extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="fontawesome/css/all.min.css" />
+      <link rel="stylesheet" href="css/fontawesome.min.css" />
       <table>
         <thead>
           <tr>
