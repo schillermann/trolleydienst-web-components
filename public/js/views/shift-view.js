@@ -2,7 +2,7 @@ import { LitElement, css, html } from "../lit-core.min.js";
 import "../components/view-header.js";
 import "../components/view-sub-nav.js";
 import "../components/shift/shift-info-box.js";
-import "../components/shift/shift-calender.js";
+import "../components/shift-calender.js";
 
 export class ShiftView extends LitElement {
   static styles = css`

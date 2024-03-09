@@ -1,5 +1,5 @@
-import { LitElement, css, html } from "../../lit-core.min.js";
-import "./shift-calendar-day.js";
+import { LitElement, html } from "../lit-core.min.js";
+import "./shift/shift-calendar-day.js";
 
 export class ShiftCalendar extends LitElement {
   static properties = {

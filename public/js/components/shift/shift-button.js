@@ -2,7 +2,7 @@ import { LitElement, css, html } from "../../lit-core.min.js";
 
 export class ShiftButton extends LitElement {
   static properties = {
-    publisherName: { type: String },
+    type: { type: String },
   };
 
   static styles = css`
@@ -22,6 +22,15 @@ export class ShiftButton extends LitElement {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      width: 180px;
+    }
+
+    .primary {
+      background-color: var(--primary-background-color);
+    }
+
+    .action {
+      width: auto;
     }
 
     button:hover {
@@ -35,7 +44,7 @@ export class ShiftButton extends LitElement {
 
   render() {
     return html`
-      <button>
+      <button class="${this.type}">
         <slot></slot>
       </button>
     `;

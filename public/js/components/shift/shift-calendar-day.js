@@ -1,7 +1,5 @@
 import { LitElement, css, html } from "../../lit-core.min.js";
 import "./shift-button.js";
-import "./shift-button-publisher.js";
-import "./shift-button-publisher-primary.js";
 
 export class ShiftCalendarDay extends LitElement {
   static properties = {
@@ -38,23 +36,23 @@ export class ShiftCalendarDay extends LitElement {
                 <td>
                   ${shift.slots.map((slot) => {
                     if (slot.publisherId === this.currentPublisherId) {
-                      return html`<shift-button-publisher-primary>
+                      return html`<shift-button type="primary">
                         <i class="fa-regular fa-user"></i>
                         ${slot.publisherName}
-                      </shift-button-publisher-primary>`;
+                      </shift-button>`;
                     }
                     if (slot.publisherName) {
                       return html`
-                        <shift-button-publisher-primary>
+                        <shift-button type="primary">
                           <i class="fa fa-info-circle"></i>
                           ${slot.publisherName}
-                        </shift-button-publisher-primary>
+                        </shift-button>
                       `;
                     }
-                    return html`<shift-button-publisher>
+                    return html`<shift-button>
                       <i class="fa-regular fa-pen-to-square"></i>
                       apply
-                    </shift-button-publisher>`;
+                    </shift-button>`;
                   })}
                 </td>
               </tr>
@@ -65,7 +63,7 @@ export class ShiftCalendarDay extends LitElement {
         <tfoot>
           <tr>
             <td colspan="2">
-              <shift-button>
+              <shift-button type="action">
                 <i class="fa-solid fa-pencil"></i>
                 Edit
               </shift-button>
