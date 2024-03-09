@@ -20,7 +20,7 @@ export class ShiftView extends LitElement {
       <view-header>Trolley Schichten</view-header>
       <shift-info-box></shift-info-box>
       <view-sub-nav></view-sub-nav>
-      <shift-calendar></shift-calendar>
+      <shift-calendar calendarid="1"></shift-calendar>
     `;
   }
 }

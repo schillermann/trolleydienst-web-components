@@ -1,79 +1,45 @@
 import { LitElement, html } from "../lit-core.min.js";
-import "./shift/shift-calendar-day.js";
+import { Task } from "https://cdn.jsdelivr.net/npm/@lit/task@1.0.0/+esm";
+import "./shift/shift-route.js";
 
 export class ShiftCalendar extends LitElement {
   static properties = {
-    name: {},
+    calendarId: { type: Number },
   };
 
   constructor() {
     super();
-    this.name = "World";
   }
 
+  _routesTask = new Task(this, {
+    task: async ([calendarId], { signal }) => {
+      const response = await fetch(`/api/calendars/${calendarId}/routes.json`, {
+        signal,
+      });
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    },
+    args: () => [this.calendarId],
+  });
+
   render() {
-    const shifts = [
-      {
-        from: "9:00",
-        to: "11:00",
-        slots: [
-          {
-            publisherId: 1,
-            publisherName: "John Doe",
-          },
-          {
-            publisherId: 2,
-            publisherName: "Jane Doe",
-          },
-          {},
-        ],
-      },
-      {
-        from: "11:00",
-        to: "13:00",
-        slots: [
-          {},
-          {
-            publisherId: 2,
-            publisherName: "Jane Doe",
-          },
-          {},
-        ],
-      },
-      {
-        from: "13:00",
-        to: "15:00",
-        slots: [{}, {}, {}],
-      },
-    ];
-    return html`
-      <div>
-        <shift-calendar-day
-          currentPublisherId="1"
-          routeName="Route 1"
-          shiftStart="${new Date().toISOString()}"
-          shifts="${JSON.stringify(shifts)}"
-        ></shift-calendar-day>
-        <shift-calendar-day
-          currentPublisherId="1"
-          routeName="Route 2"
-          shiftStart="${new Date().toISOString()}"
-          shifts="${JSON.stringify(shifts)}"
-        ></shift-calendar-day>
-        <shift-calendar-day
-          currentPublisherId="1"
-          routeName="Route 3"
-          shiftStart="${new Date().toISOString()}"
-          shifts="${JSON.stringify(shifts)}"
-        ></shift-calendar-day>
-        <shift-calendar-day
-          currentPublisherId="1"
-          routeName="Route 4"
-          shiftStart="${new Date().toISOString()}"
-          shifts="${JSON.stringify(shifts)}"
-        ></shift-calendar-day>
-      </div>
-    `;
+    return this._routesTask.render({
+      pending: () => html`<p>Loading routes...</p>`,
+      complete: (routes) =>
+        routes.map(
+          (route) => html`
+            <shift-route
+              currentPublisherId="1"
+              routeName="${route.routeName}"
+              shiftStart="${new Date().toISOString()}"
+              shifts="${JSON.stringify(route.shifts)}"
+            ></shift-route>
+          `
+        ),
+      error: (e) => html`<p>Error: ${e}</p>`,
+    });
   }
 }
 customElements.define("shift-calendar", ShiftCalendar);

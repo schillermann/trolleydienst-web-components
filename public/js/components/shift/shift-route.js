@@ -1,7 +1,20 @@
-import { LitElement, css, html } from "../../lit-core.min.js";
+import { LitElement, html } from "../../lit-core.min.js";
 import "./shift-button.js";
 
-export class ShiftCalendarDay extends LitElement {
+/**
+ * @typedef {Object} Shift
+ * @property {string} from
+ * @property {string} to
+ * @property {ShiftSlot[]} slots
+ */
+
+/**
+ * @typedef {Object} ShiftSlot
+ * @property {number} publisherId
+ * @property {string} publisherName
+ */
+
+export class ShiftRoute extends LitElement {
   static properties = {
     currentPublisherId: { type: Number },
     routeName: { type: String },
@@ -14,6 +27,7 @@ export class ShiftCalendarDay extends LitElement {
     this.currentPublisherId = 0;
     this.routeName = "";
     this.shiftStart = "";
+    /** @type {Shift[]} */
     this.shifts = [];
   }
 
@@ -74,4 +88,4 @@ export class ShiftCalendarDay extends LitElement {
     `;
   }
 }
-customElements.define("shift-calendar-day", ShiftCalendarDay);
+customElements.define("shift-route", ShiftRoute);
