@@ -33,6 +33,10 @@ export class ShiftButton extends LitElement {
       width: auto;
     }
 
+    .wide {
+      width: 100%;
+    }
+
     button:hover {
       background-color: var(--primary-background-color-hover);
     }

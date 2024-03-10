@@ -63,6 +63,19 @@ export class ShiftRoute extends LitElement {
     this.date = new Date();
   }
 
+  /**
+   * @param {PointerEvent} event
+   * @returns {void}
+   */
+  _clickPublisherContact(event) {
+    this.dispatchEvent(
+      new CustomEvent("dialog-publisher-contact", {
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
+
   render() {
     return html`
       <link rel="stylesheet" href="css/fontawesome.min.css" />
@@ -87,7 +100,10 @@ export class ShiftRoute extends LitElement {
                     }
                     if (slot.publisherName) {
                       return html`
-                        <shift-button type="primary">
+                        <shift-button
+                          type="primary"
+                          @click="${this._clickPublisherContact}"
+                        >
                           <i class="fa fa-info-circle"></i>
                           ${slot.publisherName}
                         </shift-button>
