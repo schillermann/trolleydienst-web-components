@@ -1,6 +1,7 @@
 [
   {
     "routeName": "Route 1",
+    "date": "Wed Apr 1 2024",
     "shifts": [
       {
         "from": "9:00",
@@ -38,6 +39,7 @@
   },
   {
     "routeName": "Route 2",
+    "date": "Wed Apr 2 2024",
     "shifts": [
       {
         "from": "7:00",

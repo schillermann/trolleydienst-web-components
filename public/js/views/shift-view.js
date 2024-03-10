@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "../lit-core.min.js";
+import { LitElement, css, html } from "../lit-all.min.js";
 import "../components/view-header.js";
 import "../components/view-sub-nav.js";
 import "../components/shift/shift-info-box.js";

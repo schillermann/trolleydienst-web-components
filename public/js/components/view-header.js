@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "../lit-core.min.js";
+import { LitElement, css, html } from "../lit-all.min.js";
 
 export class ViewHeader extends LitElement {
   static styles = css`

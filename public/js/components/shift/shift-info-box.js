@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "../../lit-core.min.js";
+import { LitElement, css, html } from "../../lit-all.min.js";
 
 export class ShiftInfoBox extends LitElement {
   static styles = css`

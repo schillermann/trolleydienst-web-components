@@ -1,4 +1,4 @@
-import { LitElement, html } from "../../lit-core.min.js";
+import { LitElement, css, html } from "../../lit-all.min.js";
 import "./shift-button.js";
 
 /**
@@ -18,9 +18,27 @@ export class ShiftRoute extends LitElement {
   static properties = {
     currentPublisherId: { type: Number },
     routeName: { type: String },
-    shiftStart: { type: String },
+    date: {
+      /**
+       * @param {string} value
+       * @returns {Date}
+       */
+      converter(value) {
+        return new Date(value);
+      },
+    },
     shifts: { type: Array },
   };
+
+  static styles = css`
+    th {
+      background-color: #d5c8e4;
+      text-align: left;
+      padding: 10px;
+      font-size: 17px;
+      color: var(--foo-color);
+    }
+  `;
 
   constructor() {
     super();
@@ -29,6 +47,7 @@ export class ShiftRoute extends LitElement {
     this.shiftStart = "";
     /** @type {Shift[]} */
     this.shifts = [];
+    this.date = new Date();
   }
 
   render() {
@@ -37,9 +56,7 @@ export class ShiftRoute extends LitElement {
       <table>
         <thead>
           <tr>
-            <th colspan="2" style="background-color: #d5c8e4">
-              ${new Date(this.shiftStart).toDateString()} - ${this.routeName}
-            </th>
+            <th colspan="2">${this.date.toDateString()} - ${this.routeName}</th>
           </tr>
         </thead>
         <tbody>
@@ -77,7 +94,7 @@ export class ShiftRoute extends LitElement {
         <tfoot>
           <tr>
             <td colspan="2">
-              <shift-button type="action">
+              <shift-button type="flex">
                 <i class="fa-solid fa-pencil"></i>
                 Edit
               </shift-button>

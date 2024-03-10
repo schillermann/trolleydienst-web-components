@@ -20,7 +20,7 @@ export class ShiftCalendar extends LitElement {
           (route) => html` <shift-route
             currentPublisherId="1"
             routeName="${route.routeName}"
-            shiftStart="${new Date().toISOString()}"
+            date="${route.date}"
             shifts="${JSON.stringify(route.shifts)}"
           ></shift-route>`
         )

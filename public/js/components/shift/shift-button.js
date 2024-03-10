@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "../../lit-core.min.js";
+import { LitElement, css, html } from "../../lit-all.min.js";
 
 export class ShiftButton extends LitElement {
   static properties = {
@@ -29,7 +29,7 @@ export class ShiftButton extends LitElement {
       background-color: var(--primary-background-color);
     }
 
-    .action {
+    .flex {
       width: auto;
     }
 
