@@ -31,12 +31,25 @@ export class ShiftRoute extends LitElement {
   };
 
   static styles = css`
+    table {
+      margin-top: 20px;
+    }
+
     th {
       background-color: #d5c8e4;
       text-align: left;
       padding: 10px;
       font-size: 17px;
       color: var(--foo-color);
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--background-color);
+    }
+
+    tfoot tr td {
+      background-color: #d5c8e4;
+      padding: 6px;
     }
   `;
 
