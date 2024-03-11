@@ -1,4 +1,4 @@
-import { LitElement, html } from "../../lit-all.min.js";
+import { LitElement, css, html } from "../../lit-all.min.js";
 
 export class ShiftDialogPublisherContact extends LitElement {
   static properties = {
@@ -8,8 +8,17 @@ export class ShiftDialogPublisherContact extends LitElement {
     phone: { type: String },
     mobile: { type: String },
     publisherNote: { type: String },
-    open: { type: Boolean, reflect: true },
+    open: {
+      type: Boolean,
+      reflect: true,
+    },
   };
+
+  static styles = css`
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.6);
+    }
+  `;
 
   constructor() {
     super();
@@ -22,12 +31,17 @@ export class ShiftDialogPublisherContact extends LitElement {
     this.open = false;
   }
 
-  attributeChangedCallback(name, oldval, newval) {
-    super.attributeChangedCallback(name, oldval, newval);
-    if (name === "open") {
+  set open(val) {
+    if (this.renderRoot) {
       const dialog = this.renderRoot.querySelector("dialog");
-      newval === "true" ? dialog.showModal() : dialog.close();
+      val ? dialog.showModal() : dialog.close();
     }
+
+    this._open = val;
+  }
+
+  get open() {
+    return this._open;
   }
 
   _clickClose(e) {
