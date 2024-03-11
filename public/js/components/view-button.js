@@ -1,6 +1,6 @@
-import { LitElement, css, html } from "../../lit-all.min.js";
+import { LitElement, css, html } from "../lit-all.min.js";
 
-export class ShiftButton extends LitElement {
+export class ViewButton extends LitElement {
   static properties = {
     type: { type: String },
   };
@@ -25,20 +25,28 @@ export class ShiftButton extends LitElement {
       width: 180px;
     }
 
-    .primary {
-      background-color: var(--primary-background-color);
+    button:hover {
+      background-color: var(--primary-background-color-hover);
     }
 
-    .flex {
-      width: auto;
+    .danger {
+      color: #fff;
+      background-color: #c82333;
+    }
+    .danger:hover {
+      background-color: #a12632;
+    }
+
+    .primary {
+      background-color: var(--primary-background-color);
     }
 
     .wide {
       width: 100%;
     }
 
-    button:hover {
-      background-color: var(--primary-background-color-hover);
+    .flex {
+      width: auto;
     }
   `;
 
@@ -54,4 +62,4 @@ export class ShiftButton extends LitElement {
     `;
   }
 }
-customElements.define("shift-button", ShiftButton);
+customElements.define("view-button", ViewButton);

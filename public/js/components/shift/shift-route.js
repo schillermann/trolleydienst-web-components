@@ -1,5 +1,5 @@
 import { LitElement, css, html } from "../../lit-all.min.js";
-import "./shift-button.js";
+import "../view-button.js";
 
 /**
  * @typedef {Object} Shift
@@ -93,26 +93,26 @@ export class ShiftRoute extends LitElement {
                 <td>
                   ${shift.slots.map((slot) => {
                     if (slot.publisherId === this.currentPublisherId) {
-                      return html`<shift-button type="primary">
+                      return html`<view-button type="primary">
                         <i class="fa-regular fa-user"></i>
                         ${slot.publisherName}
-                      </shift-button>`;
+                      </view-button>`;
                     }
                     if (slot.publisherName) {
                       return html`
-                        <shift-button
+                        <view-button
                           type="primary"
                           @click="${this._clickPublisherContact}"
                         >
                           <i class="fa fa-info-circle"></i>
                           ${slot.publisherName}
-                        </shift-button>
+                        </view-button>
                       `;
                     }
-                    return html`<shift-button>
+                    return html`<view-button>
                       <i class="fa-regular fa-pen-to-square"></i>
                       apply
-                    </shift-button>`;
+                    </view-button>`;
                   })}
                 </td>
               </tr>
@@ -123,10 +123,10 @@ export class ShiftRoute extends LitElement {
         <tfoot>
           <tr>
             <td colspan="2">
-              <shift-button type="flex">
+              <view-button type="flex">
                 <i class="fa-solid fa-pencil"></i>
                 Edit
-              </shift-button>
+              </view-button>
             </td>
           </tr>
         </tfoot>
