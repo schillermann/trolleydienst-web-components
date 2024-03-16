@@ -71,7 +71,24 @@ export class ShiftRoute extends LitElement {
    */
   _clickPublisherContact(event) {
     this.dispatchEvent(
-      new CustomEvent("dialog-publisher-contact", {
+      new CustomEvent("publisher-contact", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          publisherId: event.target.getAttribute("publisher-id"),
+          editable: event.target.getAttribute("editable"),
+        },
+      })
+    );
+  }
+
+  /**
+   * @param {PointerEvent} event
+   * @returns {void}
+   */
+  _clickShiftApplication(event) {
+    this.dispatchEvent(
+      new CustomEvent("shift-application", {
         bubbles: true,
         composed: true,
         detail: {
@@ -138,7 +155,9 @@ export class ShiftRoute extends LitElement {
                         </view-button>
                       `;
                     }
-                    return html`<view-button>
+                    return html`<view-button
+                      @click="${this._clickShiftApplication}"
+                    >
                       <i class="fa-regular fa-pen-to-square"></i>
                       apply
                     </view-button>`;

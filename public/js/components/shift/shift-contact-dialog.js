@@ -43,7 +43,7 @@ export class ShiftContactDialog extends ViewDialog {
 
     return until(
       publisher.then(
-        (p) => html` <h3>${p.firstname} ${p.lastname}</h3>
+        (p) => html`<h3>${p.firstname} ${p.lastname}</h3>
           <address>
             <dl>
               <dt>Email:</dt>

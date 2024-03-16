@@ -1,6 +1,7 @@
 import { LitElement, until, html } from "../lit-all.min.js";
 import "./shift/shift-route.js";
 import "./shift/shift-contact-dialog.js";
+import "./shift/shift-application-dialog.js";
 
 export class ShiftCalendar extends LitElement {
   static properties = {
@@ -13,43 +14,49 @@ export class ShiftCalendar extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener(
-      "dialog-publisher-contact",
-      this._eventDialogPublisherContact
-    );
+    this.addEventListener("publisher-contact", this._eventPublisherContact);
+    this.addEventListener("shift-application", this._eventShiftApplication);
   }
+
   disconnectedCallback() {
-    window.removeEventListener(
-      "dialog-publisher-contact",
-      this._eventDialogPublisherContact
-    );
+    this.removeEventListener("publisher-contact", this._eventPublisherContact);
+    this.removeEventListener("shift-application", this._eventShiftApplication);
     super.disconnectedCallback();
   }
 
   /**
    * @param {CustomEvent} event
    */
-  _eventDialogPublisherContact(event) {
+  _eventPublisherContact(event) {
     /** @type {Element} */
-    const shiftContactDialog = this.renderRoot.querySelector(
-      "shift-contact-dialog"
-    );
-    shiftContactDialog.setAttribute("open", "true");
-    shiftContactDialog.setAttribute("publisherId", event.detail.publisherId);
+    const dialog = this.renderRoot.querySelector("shift-contact-dialog");
+    dialog.setAttribute("open", "true");
+    dialog.setAttribute("publisherId", event.detail.publisherId);
     if (event.detail.editable === "true") {
-      shiftContactDialog.setAttribute("editable", true);
+      dialog.setAttribute("editable", true);
     } else {
-      shiftContactDialog.removeAttribute("editable");
+      dialog.removeAttribute("editable");
     }
+  }
+
+  /**
+   * @param {CustomEvent} event
+   */
+  _eventShiftApplication(event) {
+    /** @type {Element} */
+    const dialog = this.renderRoot.querySelector("shift-application-dialog");
+    dialog.setAttribute("open", "true");
+    dialog.setAttribute("publisherId", event.detail.publisherId);
   }
 
   render() {
     const routes = fetch(`/api/calendars/${this.calendarId}/routes.json`).then(
       (response) => response.json()
     );
-    return html` <shift-contact-dialog
-        title="Publisher Contact"
-      ></shift-contact-dialog>
+    return html`<shift-application-dialog
+        title="Shift Application"
+      ></shift-application-dialog>
+      <shift-contact-dialog title="Publisher Contact"></shift-contact-dialog>
       ${until(
         routes.then((routes) =>
           routes.map(
