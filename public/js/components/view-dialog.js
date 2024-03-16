@@ -19,7 +19,6 @@ export class ViewDialog extends LitElement {
   }
 
   set open(val) {
-    console.log(val);
     if (this.renderRoot) {
       const dialog = this.renderRoot.querySelector("dialog");
       val ? dialog.showModal() : dialog.close();
@@ -36,15 +35,17 @@ export class ViewDialog extends LitElement {
     this.open = false;
   }
 
+  contentTemplate() {
+    return "";
+  }
+
   render() {
     return html`
       <dialog>
         <header>
           <h2>${this.title}</h2>
         </header>
-        <div>
-          <slot></slot>
-        </div>
+        <div>${this.contentTemplate()}</div>
         <footer>
           <view-button type="wide" @click="${this._clickClose}">
             <i class="fa fa-times-circle"></i>

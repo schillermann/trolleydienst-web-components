@@ -72,6 +72,9 @@ export class ShiftRoute extends LitElement {
       new CustomEvent("dialog-publisher-contact", {
         bubbles: true,
         composed: true,
+        detail: {
+          publisherId: event.target.getAttribute("publisher-id"),
+        },
       })
     );
   }
@@ -93,7 +96,10 @@ export class ShiftRoute extends LitElement {
                 <td>
                   ${shift.slots.map((slot) => {
                     if (slot.publisherId === this.currentPublisherId) {
-                      return html`<view-button type="primary">
+                      return html`<view-button
+                        publisher-id="${slot.publisherId}"
+                        type="primary"
+                      >
                         <i class="fa-regular fa-user"></i>
                         ${slot.publisherName}
                       </view-button>`;
@@ -101,6 +107,7 @@ export class ShiftRoute extends LitElement {
                     if (slot.publisherName) {
                       return html`
                         <view-button
+                          publisher-id="${slot.publisherId}"
                           type="primary"
                           @click="${this._clickPublisherContact}"
                         >
