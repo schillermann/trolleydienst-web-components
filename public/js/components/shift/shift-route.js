@@ -28,6 +28,7 @@ export class ShiftRoute extends LitElement {
       },
     },
     shifts: { type: Array },
+    editable: { type: Boolean },
   };
 
   static styles = css`
@@ -61,6 +62,7 @@ export class ShiftRoute extends LitElement {
     /** @type {Shift[]} */
     this.shifts = [];
     this.date = new Date();
+    this.editable = false;
   }
 
   /**
@@ -74,11 +76,28 @@ export class ShiftRoute extends LitElement {
         composed: true,
         detail: {
           publisherId: event.target.getAttribute("publisher-id"),
+          editable: event.target.getAttribute("editable"),
         },
       })
     );
   }
 
+  /**
+   * @returns {string}
+   */
+  buttonTemplate() {
+    if (this.editable) {
+      return html`<view-button type="flex">
+        <i class="fa-solid fa-pencil"></i>
+        Edit
+      </view-button>`;
+    }
+    return "";
+  }
+
+  /**
+   * @returns {string}
+   */
   render() {
     return html`
       <link rel="stylesheet" href="css/fontawesome.min.css" />
@@ -98,7 +117,9 @@ export class ShiftRoute extends LitElement {
                     if (slot.publisherId === this.currentPublisherId) {
                       return html`<view-button
                         publisher-id="${slot.publisherId}"
+                        editable="true"
                         type="primary"
+                        @click="${this._clickPublisherContact}"
                       >
                         <i class="fa-regular fa-user"></i>
                         ${slot.publisherName}
@@ -108,6 +129,7 @@ export class ShiftRoute extends LitElement {
                       return html`
                         <view-button
                           publisher-id="${slot.publisherId}"
+                          editable="false"
                           type="primary"
                           @click="${this._clickPublisherContact}"
                         >
@@ -129,12 +151,7 @@ export class ShiftRoute extends LitElement {
 
         <tfoot>
           <tr>
-            <td colspan="2">
-              <view-button type="flex">
-                <i class="fa-solid fa-pencil"></i>
-                Edit
-              </view-button>
-            </td>
+            <td colspan="2">${this.buttonTemplate()}</td>
           </tr>
         </tfoot>
       </table>

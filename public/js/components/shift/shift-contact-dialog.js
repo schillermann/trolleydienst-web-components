@@ -14,10 +14,13 @@ export class ShiftContactDialog extends ViewDialog {
   }
 
   _clickDelete() {
-    // TODO: Delete application
+    console.log("TODO: delete application");
     this.open = false;
   }
 
+  /**
+   * @returns {string}
+   */
   buttonTemplate() {
     if (this.editable) {
       return html`<view-button type="danger wide" @click="${this._clickDelete}">
@@ -28,6 +31,9 @@ export class ShiftContactDialog extends ViewDialog {
     return "";
   }
 
+  /**
+   * @returns {string}
+   */
   contentTemplate() {
     const publisher = this.publisherId
       ? fetch(`/api/publishers/${this.publisherId}.json`).then((response) =>
@@ -35,7 +41,7 @@ export class ShiftContactDialog extends ViewDialog {
         )
       : Promise.resolve({});
 
-    return html`${until(
+    return until(
       publisher.then(
         (p) => html` <h3>${p.firstname} ${p.lastname}</h3>
           <address>
@@ -55,7 +61,7 @@ export class ShiftContactDialog extends ViewDialog {
           ${this.buttonTemplate()}`
       ),
       html`<span>Loading...</span>`
-    )}`;
+    );
   }
 }
 customElements.define("shift-contact-dialog", ShiftContactDialog);

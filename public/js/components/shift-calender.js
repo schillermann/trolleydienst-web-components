@@ -36,6 +36,11 @@ export class ShiftCalendar extends LitElement {
     );
     shiftContactDialog.setAttribute("open", "true");
     shiftContactDialog.setAttribute("publisherId", event.detail.publisherId);
+    if (event.detail.editable === "true") {
+      shiftContactDialog.setAttribute("editable", true);
+    } else {
+      shiftContactDialog.removeAttribute("editable");
+    }
   }
 
   render() {
