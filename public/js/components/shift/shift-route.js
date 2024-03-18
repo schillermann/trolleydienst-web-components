@@ -37,20 +37,23 @@ export class ShiftRoute extends LitElement {
     }
 
     th {
+      color: #363636;
       background-color: #d5c8e4;
       text-align: left;
       padding: 10px;
       font-size: 17px;
-      color: var(--foo-color);
     }
 
     tr:nth-child(even) {
-      background-color: var(--background-color);
+      background-color: var(--background);
+    }
+
+    td {
+      padding: 6px;
     }
 
     tfoot tr td {
       background-color: #d5c8e4;
-      padding: 6px;
     }
   `;
 
@@ -135,7 +138,7 @@ export class ShiftRoute extends LitElement {
                       return html`<view-button
                         publisher-id="${slot.publisherId}"
                         editable="true"
-                        type="primary"
+                        type="active"
                         @click="${this._clickPublisherContact}"
                       >
                         <i class="fa-regular fa-user"></i>
@@ -147,7 +150,7 @@ export class ShiftRoute extends LitElement {
                         <view-button
                           publisher-id="${slot.publisherId}"
                           editable="false"
-                          type="primary"
+                          type="active"
                           @click="${this._clickPublisherContact}"
                         >
                           <i class="fa fa-info-circle"></i>

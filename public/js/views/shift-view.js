@@ -5,12 +5,6 @@ import "../components/shift/shift-info-box.js";
 import "../components/shift-calender.js";
 
 export class ShiftView extends LitElement {
-  static styles = css`
-    :host {
-      color: black;
-    }
-  `;
-
   constructor() {
     super();
   }

@@ -7,13 +7,39 @@
     <link rel="stylesheet" href="css/fontawesome.min.css" />
     <style>
       :root {
+        --font: Helvetica Light, Helvetica, Arial;
         --color: #000;
-        --background-color: #edeae6;
-        --primary-color: #111;
-        --primary-background-color: #9ccc68;
-        --primary-background-color-hover: #afa0bf;
-        --foo-color: #363636;
-        font-family: "Helvetica Light", Helvetica, Arial;
+        --background: #edeae6;
+        --background-main: #fff;
+        --button-color: #000;
+        --button-background: #edeae6;
+        --button-primary-color: #fff;
+        --button-primary-background: #786393;
+        --button-active-color: #000;
+        --button-active-background: #9ccc68;
+        --button-danger-background: #c82333;
+        --button-border-radius: 5px;
+        --button-hover-brightness: 0.85;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color: #bfbfbf;
+          --background: #1f1f1f;
+          --background-main: #404040;
+          --button-color: #aaaaaa;
+          --button-background: #2e2e2e;
+        }
+      }
+
+      body {
+        font-family: var(--font);
+        color: var(--color);
+        background-color: var(--background);
+      }
+
+      main {
+        background-color: var(--background-main);
       }
     </style>
   </head>
@@ -26,7 +52,9 @@
       <button>Newsletter</button>
       <button>History</button>
     </nav>
-    <shift-view></shift-view>
+    <main>
+      <shift-view></shift-view>
+    </main>
     <script type="module" src="js/views/shift-view.js"></script>
   </body>
 </html>

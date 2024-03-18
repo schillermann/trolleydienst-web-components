@@ -1,5 +1,4 @@
 import { LitElement, css, html } from "../lit-all.min.js";
-import "./view-sub-nav-button.js";
 
 export class ViewSubNav extends LitElement {
   static styles = css`
@@ -14,8 +13,12 @@ export class ViewSubNav extends LitElement {
 
   render() {
     return html`
+      <link rel="stylesheet" href="css/fontawesome.min.css" />
       <nav>
-        <view-sub-nav-button></view-sub-nav-button>
+        <view-button type="primary flex">
+          <i class="fa-solid fa-plus"></i>
+          New Shift
+        </view-button>
       </nav>
     `;
   }

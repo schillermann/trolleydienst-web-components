@@ -6,15 +6,18 @@ export class ShiftApplicationDialog extends ViewDialog {
     publisherId: { type: Number },
   };
 
-  static styles = css`
-    select {
-      width: 100%;
-      touch-action: manipulation;
-      cursor: pointer;
-      margin-bottom: 4px;
-      padding: 6px 12px;
-    }
-  `;
+  static styles = [
+    ViewDialog.styles,
+    css`
+      select {
+        width: 100%;
+        touch-action: manipulation;
+        cursor: pointer;
+        margin-bottom: 4px;
+        padding: 6px 12px;
+      }
+    `,
+  ];
 
   constructor() {
     super();
