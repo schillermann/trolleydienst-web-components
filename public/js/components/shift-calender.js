@@ -46,7 +46,6 @@ export class ShiftCalendar extends LitElement {
     /** @type {Element} */
     const dialog = this.renderRoot.querySelector("shift-application-dialog");
     dialog.setAttribute("open", "true");
-    dialog.setAttribute("publisherId", event.detail.publisherId);
   }
 
   render() {
@@ -54,6 +53,7 @@ export class ShiftCalendar extends LitElement {
       (response) => response.json()
     );
     return html`<shift-application-dialog
+        defaultpublisherid="1"
         title="Shift Application"
       ></shift-application-dialog>
       <shift-contact-dialog title="Publisher Contact"></shift-contact-dialog>

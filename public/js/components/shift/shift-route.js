@@ -95,7 +95,6 @@ export class ShiftRoute extends LitElement {
         bubbles: true,
         composed: true,
         detail: {
-          publisherId: event.target.getAttribute("publisher-id"),
           editable: event.target.getAttribute("editable"),
         },
       })

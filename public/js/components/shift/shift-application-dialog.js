@@ -3,13 +3,15 @@ import { ViewDialog } from "../view-dialog.js";
 
 export class ShiftApplicationDialog extends ViewDialog {
   static properties = {
-    publisherId: { type: Number },
+    defaultPublisherId: { type: Number },
+    publisherSelection: { type: Boolean },
   };
 
   static styles = [
     ViewDialog.styles,
     css`
       select {
+        font-size: 1em;
         width: 100%;
         touch-action: manipulation;
         cursor: pointer;
@@ -21,36 +23,53 @@ export class ShiftApplicationDialog extends ViewDialog {
 
   constructor() {
     super();
-    this.publisherId = 0;
+    this.defaultPublisherId = 0;
+    this.publisherSelection = false;
+  }
+
+  _clickApply() {
+    console.log("TODO: enter shift");
+    this.open = false;
+  }
+
+  /**
+   * @returns {string}
+   */
+  selectTemplate() {
+    if (!this.publisherSelection) {
+      return "";
+    }
+    const publishers = fetch(`/api/publishers.json?active=true`).then(
+      (response) => response.json()
+    );
+    return html`<select>
+      ${until(
+        publishers.then((publishers) =>
+          publishers.map((publisher) => {
+            if (publisher.id === this.defaultPublisherId) {
+              return html`<option value="${publisher.id}" selected>
+                ${publisher.firstname} ${publisher.lastname}
+              </option>`;
+            }
+            return html`<option value="${publisher.id}">
+              ${publisher.firstname} ${publisher.lastname}
+            </option>`;
+          })
+        ),
+        html`<span>Loading...</span>`
+      )}
+    </select>`;
   }
 
   /**
    * @returns {string}
    */
   contentTemplate() {
-    const publishers = fetch(`/api/publishers.json?active=true`).then(
-      (response) => response.json()
-    );
     return html`
       <div>
         <p>Error Message</p>
-        <select>
-          ${until(
-            publishers.then((publishers) =>
-              publishers.map(
-                (publisher) =>
-                  html`<option value="${publisher.id}">
-                    ${publisher.firstname} ${publisher.lastname}
-                  </option>`
-              )
-            ),
-            html`<span>Loading...</span>`
-          )}
-        </select>
-        <shift-dialog-selectmenu-publishers
-          default-publisher-id="${this.publisherId}"
-        ></shift-dialog-selectmenu-publishers>
-        <view-button type="primary wide">
+        ${this.selectTemplate()}
+        <view-button type="primary wide" @click="${this._clickApply}">
           <i class="fa-solid fa-check"></i>
           Apply
         </view-button>
