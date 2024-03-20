@@ -1,0 +1,11 @@
+curl https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js -o public/js/lit-all.min.js
+curl https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js.map -o public/js/lit-all.min.js.map
+
+powershell -command "Invoke-WebRequest -Uri https://use.fontawesome.com/releases/v6.5.1/fontawesome-free-6.5.1-web.zip -OutFile fontawesome.zip"
+powershell -command "Expand-Archive -Path fontawesome.zip -DestinationPath ."
+del fontawesome.zip
+rename fontawesome-* fontawesome
+copy fontawesome\css\all.min.css public\css\fontawesome.min.css
+xcopy /E /I fontawesome\webfonts public\webfonts
+rmdir /S /Q fontawesome
+
