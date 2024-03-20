@@ -8,38 +8,44 @@
     <style>
       :root {
         --font: Helvetica Light, Helvetica, Arial;
-        --color: #000;
-        --background: #edeae6;
-        --background-main: #fff;
-        --button-color: #000;
-        --button-background: #edeae6;
-        --button-primary-color: #fff;
-        --button-primary-background: #786393;
-        --button-active-color: #000;
-        --button-active-background: #9ccc68;
-        --button-danger-background: #c82333;
-        --button-border-radius: 5px;
-        --button-hover-brightness: 0.85;
+
+        --var-text-primary: #000;
+
+        --var-primar: #786393;
+        --var-secondary: #666E75;
+      
+        --var-success: #9ccc68;
+        --var-danger: #c82333;
+
+        --var-background-primary: #a484ce;
+        --var-background-secondary: #FFF;
+        --var-background-element: #edeae6;
+        
+        --var-shadow: rgba(0, 0, 0, 0.12);
+        --var-focus: 0.85;
+
+        --var-radius: 5px;
+        --var-border: #DEE5F2;
       }
 
       @media (prefers-color-scheme: dark) {
         :root {
-          --color: #bfbfbf;
-          --background: #1f1f1f;
-          --background-main: #404040;
-          --button-color: #aaaaaa;
-          --button-background: #2e2e2e;
+          --var-text-primary: #bfbfbf;
+          --var-primar: #1f1f1f;
+          --var-secondary: #404040;
+          --var-text-primary: #aaaaaa;
+          --var-background-element: #2e2e2e;
         }
       }
 
       body {
         font-family: var(--font);
-        color: var(--color);
+        color: var(--var-text-primary);
         background-color: var(--background);
       }
 
       main {
-        background-color: var(--background-main);
+        background-color: var(--var-background-secondary);
       }
     </style>
   </head>
