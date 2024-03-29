@@ -17,31 +17,31 @@ export class ViewButton extends LitElement {
       user-select: none;
       border: 1px solid rgba(189, 183, 181, 0.5);
       margin-bottom: 4px;
-      background-color: var(--var-background-element);
-      border-radius: var(--var-radius);
+      background-color: var(--td-background-element);
+      border-radius: var(--td-radius);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
       width: 180px;
-      color: var(--var-text-primary);
+      color: var(--td-text-primary);
     }
 
     button:hover {
-      filter: brightness(var(--var-focus));
+      filter: brightness(var(--td-focus));
     }
 
     .danger {
-      background-color: var(--var-danger);
+      background-color: var(--td-danger);
     }
 
     .primary {
-      color: var(--var-background-secondary);
-      background-color: var(--var-primar);
+      color: var(--td-background-secondary);
+      background-color: var(--td-primar);
     }
 
     .active {
-      color: var(--var-text-primary);
-      background-color: var(--var-success);
+      color: var(--td-text-primary);
+      background-color: var(--td-success);
     }
 
     .wide {

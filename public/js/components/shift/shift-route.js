@@ -48,7 +48,7 @@ export class ShiftRoute extends LitElement {
     }
 
     tr:nth-child(even) {
-      background-color: var(--background);
+      background-color: var(--td-background);
     }
 
     td {
