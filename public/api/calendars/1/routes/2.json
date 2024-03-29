@@ -1,0 +1,42 @@
+{
+  "id": 2,
+  "routeName": "Route 2",
+  "date": "2024-04-02T07:00:00.000Z",
+  "color": "red",
+  "numberOfShifts": 2,
+  "minutesPerShift": 120,
+  "shifts": [
+    {
+      "from": "7:00",
+      "to": "9:00",
+      "slots": [{}, {}, {}]
+    },
+    {
+      "from": "9:00",
+      "to": "11:00",
+      "slots": [
+        {},
+        {
+          "publisherId": 2,
+          "publisherName": "Jane Doe"
+        },
+        {}
+      ]
+    },
+    {
+      "from": "11:00",
+      "to": "13:00",
+      "slots": [
+        {
+          "publisherId": 1,
+          "publisherName": "John Doe"
+        },
+        {
+          "publisherId": 2,
+          "publisherName": "Jane Doe"
+        },
+        {}
+      ]
+    }
+  ]
+}

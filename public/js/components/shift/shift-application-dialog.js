@@ -1,5 +1,6 @@
 import { html, css, until } from "../../lit-all.min.js";
 import { ViewDialog } from "../view-dialog.js";
+import { translate } from "../../translate.js";
 
 export class ShiftApplicationDialog extends ViewDialog {
   static properties = {
@@ -66,12 +67,13 @@ export class ShiftApplicationDialog extends ViewDialog {
    */
   contentTemplate() {
     return html`
+      <link rel="stylesheet" href="css/fontawesome.min.css" />
       <div>
         <p>Error Message</p>
         ${this.selectTemplate()}
         <view-button type="primary wide" @click="${this._clickApply}">
           <i class="fa-solid fa-check"></i>
-          Apply
+          ${translate("Apply")}
         </view-button>
       </div>
     `;

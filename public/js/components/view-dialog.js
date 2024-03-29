@@ -1,4 +1,5 @@
 import { LitElement, css, html } from "../lit-all.min.js";
+import { translate } from "../translate.js";
 
 export class ViewDialog extends LitElement {
   static properties = {
@@ -47,13 +48,13 @@ export class ViewDialog extends LitElement {
     return html`
       <dialog>
         <header>
-          <h2>${this.title}</h2>
+          <h2>${translate(this.title)}</h2>
         </header>
         <div>${this.contentTemplate()}</div>
         <footer>
           <view-button type="wide" @click="${this._clickClose}">
             <i class="fa fa-times-circle"></i>
-            Close
+            ${translate("Cancel")}
           </view-button>
         </footer>
       </dialog>

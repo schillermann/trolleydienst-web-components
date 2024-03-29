@@ -23,10 +23,11 @@ export class ShiftContactDialog extends ViewDialog {
    */
   buttonTemplate() {
     if (this.editable) {
-      return html`<view-button type="danger wide" @click="${this._clickDelete}">
-        <i class="fa fa-times-circle"></i>
-        Delete
-      </view-button>`;
+      return html`<link rel="stylesheet" href="css/fontawesome.min.css" />
+        <view-button type="danger wide" @click="${this._clickDelete}">
+          <i class="fa fa-times-circle"></i>
+          Delete
+        </view-button>`;
     }
     return "";
   }

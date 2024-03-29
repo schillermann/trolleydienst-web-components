@@ -1,7 +1,11 @@
 [
   {
+    "id": 1,
     "routeName": "Route 1",
-    "date": "Wed Apr 1 2024",
+    "date": "2024-04-02",
+    "color": "#d5c8e4",
+    "numberOfShifts": 2,
+    "minutesPerShift": 120,
     "shifts": [
       {
         "from": "9:00",
@@ -38,8 +42,12 @@
     ]
   },
   {
+    "id": 2,
     "routeName": "Route 2",
-    "date": "Wed Apr 2 2024",
+    "date": "2024-04-02",
+    "color": "red",
+    "numberOfShifts": 2,
+    "minutesPerShift": 120,
     "shifts": [
       {
         "from": "7:00",

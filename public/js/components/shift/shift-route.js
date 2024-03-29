@@ -1,4 +1,5 @@
 import { LitElement, css, html } from "../../lit-all.min.js";
+import { translate } from "../../translate.js";
 import "../view-button.js";
 
 /**
@@ -18,6 +19,8 @@ export class ShiftRoute extends LitElement {
   static properties = {
     currentPublisherId: { type: Number },
     routeName: { type: String },
+    calendarId: { type: Number },
+    routeId: { type: Number },
     date: {
       /**
        * @param {string} value
@@ -61,7 +64,8 @@ export class ShiftRoute extends LitElement {
     super();
     this.currentPublisherId = 0;
     this.routeName = "";
-    this.shiftStart = "";
+    this.calendarId = 0;
+    this.routeId = 0;
     /** @type {Shift[]} */
     this.shifts = [];
     this.date = new Date();
@@ -95,7 +99,25 @@ export class ShiftRoute extends LitElement {
         bubbles: true,
         composed: true,
         detail: {
-          editable: event.target.getAttribute("editable"),
+          calendarId: event.target.getAttribute("calendarId"),
+          publisherSelection: event.target.getAttribute("publisherSelection"),
+        },
+      })
+    );
+  }
+
+  /**
+   * @param {PointerEvent} event
+   * @returns {void}
+   */
+  _clickShiftRoute(event) {
+    this.dispatchEvent(
+      new CustomEvent("shift-route", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          calendarId: event.target.getAttribute("calendarId"),
+          routeId: event.target.getAttribute("routeId"),
         },
       })
     );
@@ -106,9 +128,14 @@ export class ShiftRoute extends LitElement {
    */
   buttonTemplate() {
     if (this.editable) {
-      return html`<view-button type="flex">
+      return html`<view-button
+        type="flex"
+        calendarid="${this.calendarId}"
+        routeid="${this.routeId}"
+        @click="${this._clickShiftRoute}"
+      >
         <i class="fa-solid fa-pencil"></i>
-        Edit
+        ${translate("Edit")}
       </view-button>`;
     }
     return "";
@@ -118,12 +145,20 @@ export class ShiftRoute extends LitElement {
    * @returns {string}
    */
   render() {
+    let shiftId = 0;
     return html`
       <link rel="stylesheet" href="css/fontawesome.min.css" />
       <table>
         <thead>
           <tr>
-            <th colspan="2">${this.date.toDateString()} - ${this.routeName}</th>
+            <th colspan="2">
+              ${this.date.toLocaleDateString(undefined, {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+              })}
+              - ${this.routeName}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -158,10 +193,13 @@ export class ShiftRoute extends LitElement {
                       `;
                     }
                     return html`<view-button
+                      calendarid="${this.calendarId}"
+                      routeId="${this.routeId}"
+                      shift="${shiftId++}"
                       @click="${this._clickShiftApplication}"
                     >
                       <i class="fa-regular fa-pen-to-square"></i>
-                      apply
+                      ${translate("Apply")}
                     </view-button>`;
                   })}
                 </td>
