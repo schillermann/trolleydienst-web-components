@@ -1,4 +1,5 @@
 import { LitElement, css, html } from "../lit-all.min.js";
+import { translate } from "../translate.js";
 
 export class ViewSubNav extends LitElement {
   static styles = css`
@@ -17,7 +18,7 @@ export class ViewSubNav extends LitElement {
       <nav>
         <view-button type="primary flex">
           <i class="fa-solid fa-plus"></i>
-          New Shift
+          ${translate("New Shift")}
         </view-button>
       </nav>
     `;

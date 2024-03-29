@@ -16,7 +16,7 @@ export class ShiftRouteDialog extends ViewDialog {
   /**
    * @param {Event} event
    */
-  _changeFrom(event) {
+  _changeShiftTime(event) {
     const timeFrom = this.renderRoot.getElementById("from").value;
     const timeFromSplit = timeFrom.split(":");
 
@@ -33,6 +33,14 @@ export class ShiftRouteDialog extends ViewDialog {
     dateTo.setMinutes(dateTo.getMinutes() + numberOfShifts * minutesPerShift);
     dateTo.setSeconds(0);
     this.renderRoot.getElementById("to").value = dateTo.toLocaleTimeString();
+  }
+
+  /**
+   * @param {Event} event
+   */
+  _clickSave(event) {
+    console.log("TODO: save shift changes");
+    this.open = false;
   }
 
   /**
@@ -91,7 +99,7 @@ export class ShiftRouteDialog extends ViewDialog {
                   id="from"
                   name="from"
                   value="${dateFrom.toTimeString().slice(0, 8)}"
-                  @change="${this._changeFrom}"
+                  @change="${this._changeShiftTime}"
                 />
               </dd>
 
@@ -106,7 +114,7 @@ export class ShiftRouteDialog extends ViewDialog {
                   id="number-of-shifts"
                   name="number-of-shifts"
                   value="${r.numberOfShifts}"
-                  @change="${this._changeFrom}"
+                  @change="${this._changeShiftTime}"
                 />
               </dd>
 
@@ -121,7 +129,7 @@ export class ShiftRouteDialog extends ViewDialog {
                   id="minutes-per-shift"
                   name="minutes-per-shift"
                   value="${r.minutesPerShift}"
-                  @change="${this._changeFrom}"
+                  @change="${this._changeShiftTime}"
                 />
               </dd>
 
@@ -146,7 +154,7 @@ export class ShiftRouteDialog extends ViewDialog {
                 />
               </dd>
             </dl>
-            <view-button type="primary wide" @click="${this._clickDelete}">
+            <view-button type="primary wide" @click="${this._clickSave}">
               <i class="fa-regular fa-floppy-disk"></i>
               ${translate("Save")}
             </view-button>

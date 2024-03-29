@@ -1,4 +1,5 @@
 import { html, until } from "../../lit-all.min.js";
+import { translate } from "../../translate.js";
 import { ViewDialog } from "../view-dialog.js";
 
 export class ShiftContactDialog extends ViewDialog {
@@ -26,7 +27,7 @@ export class ShiftContactDialog extends ViewDialog {
       return html`<link rel="stylesheet" href="css/fontawesome.min.css" />
         <view-button type="danger wide" @click="${this._clickDelete}">
           <i class="fa fa-times-circle"></i>
-          Delete
+          ${translate("Delete")}
         </view-button>`;
     }
     return "";
@@ -45,23 +46,24 @@ export class ShiftContactDialog extends ViewDialog {
     return until(
       publisher.then(
         (p) => html`<h3>${p.firstname} ${p.lastname}</h3>
+          <link rel="stylesheet" href="css/fontawesome.min.css" />
           <address>
             <dl>
-              <dt>Email:</dt>
+              <dt>${translate("Email")}:</dt>
               <dd>
                 <a href="mailto:${p.email}">${p.email}</a>
               </dd>
-              <dt>Phone:</dt>
+              <dt>${translate("Phone")}:</dt>
               <dd><a href="tel:${p.phone}">${p.phone}</a></dd>
-              <dt>Mobile:</dt>
+              <dt>${translate("Mobile")}:</dt>
               <dd><a href="tel:${p.mobile}">${p.mobile}</a></dd>
             </dl>
           </address>
-          <h4>Info From Publisher</h4>
+          <h4>${translate("Info From Publisher")}:</h4>
           <p>${p.publisherNote}</p>
           ${this.buttonTemplate()}`
       ),
-      html`<span>Loading...</span>`
+      html`<span>${translate("Loading")}...</span>`
     );
   }
 }

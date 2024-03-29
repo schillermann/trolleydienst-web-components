@@ -57,7 +57,7 @@ export class ShiftApplicationDialog extends ViewDialog {
             </option>`;
           })
         ),
-        html`<span>Loading...</span>`
+        html`<span>${translate("Loading")}...</span>`
       )}
     </select>`;
   }

@@ -1,4 +1,5 @@
 import { LitElement, until, html } from "../lit-all.min.js";
+import { translate } from "../translate.js";
 import "./shift/shift-route.js";
 import "./shift/shift-route-dialog.js";
 import "./shift/shift-contact-dialog.js";
@@ -69,10 +70,14 @@ export class ShiftCalendar extends LitElement {
     );
     return html`<shift-application-dialog
         defaultpublisherid="1"
-        title="Shift Application"
+        title="${translate("Shift Application")}"
       ></shift-application-dialog>
-      <shift-contact-dialog title="Publisher Contact"></shift-contact-dialog>
-      <shift-route-dialog title="Shift Route"></shift-route-dialog>
+      <shift-contact-dialog
+        title="${translate("Publisher Contact")}"
+      ></shift-contact-dialog>
+      <shift-route-dialog
+        title="${translate("Shift Route")}"
+      ></shift-route-dialog>
       ${until(
         routes.then((routes) =>
           routes.map(
@@ -87,7 +92,7 @@ export class ShiftCalendar extends LitElement {
             ></shift-route>`
           )
         ),
-        html`<span>Loading...</span>`
+        html`<span>${translate("Loading")}...</span>`
       )}`;
   }
 }

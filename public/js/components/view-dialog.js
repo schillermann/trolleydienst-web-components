@@ -54,7 +54,7 @@ export class ViewDialog extends LitElement {
         <footer>
           <view-button type="wide" @click="${this._clickClose}">
             <i class="fa fa-times-circle"></i>
-            ${translate("Cancel")}
+            ${translate("Close")}
           </view-button>
         </footer>
       </dialog>
