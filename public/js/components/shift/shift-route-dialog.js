@@ -57,7 +57,7 @@ export class ShiftRouteDialog extends ViewDialog {
 
     return until(
       route.then((r) => {
-        const dateFrom = new Date(r.date);
+        const dateFrom = new Date(r.start);
         const dateTo = new Date(dateFrom);
         dateTo.setMinutes(
           dateTo.getMinutes() + r.numberOfShifts * r.minutesPerShift

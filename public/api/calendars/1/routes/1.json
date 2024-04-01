@@ -1,7 +1,7 @@
 {
   "id": 1,
   "routeName": "Route 1",
-  "date": "2024-04-01T07:00:00.000Z",
+  "start": "2024-04-01T09:00:00+02:00",
   "color": "#d5c8e4",
   "numberOfShifts": 2,
   "minutesPerShift": 120,
